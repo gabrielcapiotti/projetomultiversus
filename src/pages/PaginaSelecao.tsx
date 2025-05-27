@@ -4,7 +4,9 @@ import {
   Typography,
   ToggleButton,
   ToggleButtonGroup,
+  IconButton,
 } from '@mui/material';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import { personagens } from '../data/personagensOmniverso';
 import { personagens as personagensTecnoWitch } from '../data/personagensTecnoWitch';
 import { personagens as personagensLastWitches } from '../data/personagensLastWitches';
@@ -100,7 +102,7 @@ export function PaginaSelecao() {
       {/* P1 e P2 */}
       <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', minHeight: 400, px: 2 }}>
         {/* P1 */}
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
           {personagemP1 && mostrarVariantesP1 && variantesP1.length > 1 && (
             <ToggleButtonGroup
               orientation="vertical"
@@ -113,8 +115,8 @@ export function PaginaSelecao() {
               }}
               sx={{
                 position: 'absolute',
-                left: '-5px',
-                top: '11%',
+                left: '-10px',
+                top: '25%',
                 transform: 'translateY(-50%)',
                 bgcolor: '#1e1e1ecc',
                 borderRadius: 1,
@@ -151,10 +153,10 @@ export function PaginaSelecao() {
             </ToggleButtonGroup>
           )}
 
-          <Box sx={{ textAlign: 'center', color: '#00e5ff' }}>
+          <Box sx={{ textAlign: 'center', color: tema.borda }}>
             {personagemP1 ? (
               <>
-                <Box onClick={() => setMostrarVariantesP1(v => !v)} sx={{ cursor: 'pointer' }}>
+                <Box sx={{ position: 'relative' }}>
                   <Box
                     component="img"
                     src={personagemP1.imagemDestaque}
@@ -167,6 +169,24 @@ export function PaginaSelecao() {
                       boxShadow: `0 0 12px ${tema.borda}`,
                     }}
                   />
+                  {variantesP1.length > 1 && (
+                    <IconButton
+                      onClick={() => setMostrarVariantesP1(v => !v)}
+                      sx={{
+                        position: 'absolute',
+                        top: 10,
+                        left: -50,
+                        bgcolor: '#1e1e1e',
+                        border: `1px solid ${tema.borda}`,
+                        boxShadow: `0 0 8px ${tema.borda}`,
+                        '&:hover': {
+                          bgcolor: `${tema.borda}22`,
+                        },
+                      }}
+                    >
+                      <SwapHorizIcon sx={{ color: tema.borda }} />
+                    </IconButton>
+                  )}
                 </Box>
                 <Typography variant="h6" mt={1}>{personagemP1.nome}</Typography>
               </>
@@ -177,11 +197,11 @@ export function PaginaSelecao() {
         <Typography variant="h3" color="white">VS</Typography>
 
         {/* P2 */}
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-          <Box sx={{ textAlign: 'center', color: '#ff1744' }}>
+        <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+          <Box sx={{ textAlign: 'center', color: tema.borda }}>
             {personagemP2 ? (
               <>
-                <Box onClick={() => setMostrarVariantesP2(v => !v)} sx={{ cursor: 'pointer' }}>
+                <Box sx={{ position: 'relative' }}>
                   <Box
                     component="img"
                     src={personagemP2.imagemDestaque}
@@ -194,6 +214,24 @@ export function PaginaSelecao() {
                       boxShadow: `0 0 12px ${tema.borda}`,
                     }}
                   />
+                  {variantesP2.length > 1 && (
+                    <IconButton
+                      onClick={() => setMostrarVariantesP2(v => !v)}
+                      sx={{
+                        position: 'absolute',
+                        top: 10,
+                        right: -50,
+                        bgcolor: '#1e1e1e',
+                        border: `1px solid ${tema.borda}`,
+                        boxShadow: `0 0 8px ${tema.borda}`,
+                        '&:hover': {
+                          bgcolor: `${tema.borda}22`,
+                        },
+                      }}
+                    >
+                      <SwapHorizIcon sx={{ color: tema.borda }} />
+                    </IconButton>
+                  )}
                 </Box>
                 <Typography variant="h6" mt={1}>{personagemP2.nome}</Typography>
               </>
@@ -212,8 +250,8 @@ export function PaginaSelecao() {
               }}
               sx={{
                 position: 'absolute',
-                right: '-5px',
-                top: '11%',
+                right: '-10px',
+                top: '25%',
                 transform: 'translateY(-50%)',
                 bgcolor: '#1e1e1ecc',
                 borderRadius: 1,
@@ -269,12 +307,12 @@ export function PaginaSelecao() {
               if (jogadorAtual === 'P1') {
                 setPersonagemP1(grupo.variantes[0]);
                 setVariantesP1(variantesTodas);
-                setMostrarVariantesP1(true);
+                setMostrarVariantesP1(false);
                 setJogadorAtual('P2');
               } else {
                 setPersonagemP2(grupo.variantes[0]);
                 setVariantesP2(variantesTodas);
-                setMostrarVariantesP2(true);
+                setMostrarVariantesP2(false);
                 setJogadorAtual('P1');
               }
             }}
